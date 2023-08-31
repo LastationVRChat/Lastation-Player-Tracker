@@ -1,6 +1,6 @@
 # Lastation-Player-Tracker
 
-![nadeko0](https://cdn.nadeko.bot/tutorial/docs-top.png)
+![nadeko0]([https://cdn.nadeko.bot/tutorial/docs-top.png](https://github.com/LastationVRChat/Lastation-Player-Tracker/blob/main/playertracker.png))
 A sonar like tracking system for players within a VRChat World.
 Most of what you need has been made for you with prefabs and put into your Hierarchy's Context menu.
 <br>This doc will be going over how to set our prefabs up. If you'd like to make your own plugins for the prefab,
