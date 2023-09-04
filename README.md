@@ -4,13 +4,6 @@ A sonar-like tracking system for players within a VRChat World.
 This is much like a **Framework** in that more plug-ins and add-ons will be made and added over time.
 ### Why make a new tracker and not use an existing one?
 Originally, We used an existing `Collider` and `Event` based tracking solution. However, this was prone to failure in many regards primarily because it was unreliable and would make many tracking mistakes when it came to certain events or edge cases, using colliders was a bit of a pain for Raycast guns at times. So we decided it was better to design this system that uses `Transforms` as probes that check the closest probe to each player and assign them to the room of that probe.
-# Adding the prefab to your Scene
-DisBridge's prefab is in your Hierarchy's Context menu.
-<br>What that means is you add them into your Scene as you would any other object.
-<br>When you right click to add a new object into your scene, you should see a new option at the bottom on your menu for UdonVR. (That menu is called a Context menu)
-<br>Going into that option, you should see a section for DisBridge.
-<br>Clicking on the option for DisBridge under that adds the prefab to your scene.
-<br>Just to clarify, the Context Menu path for the prefab is `UdonVR/DisBridge/DisBridge`
 
 # Setting up the Prefab
 If you are using the free version of DisBridge, you can skip to `Parts of a RoleContainer` below for setup, as you wont have a JSON to import and will need to do a manual setup.
@@ -29,7 +22,7 @@ After importing your roles, you'll need to do some minor edits.
 Other notable options would be `Alternative Role Name`, `Role Icon` and `Manual Usernames`.
 <br>You can read about what everything does in `Parts of a RoleContainer` below.
 
-# Parts of a RoleContainer:
+# Parts of the Framework:
 
 ## Variables
 
@@ -45,28 +38,16 @@ Other notable options would be `Alternative Role Name`, `Role Icon` and `Manual 
 | Is Supporter   | This marks your role as a Supporter role and will mark the role to be added to the generic Supporter list.                                                                                                                                                                                                                                                 |
 | Is Booster     | This marks your role as your Discord Booster role. You can only have one of these marked, and if you have multiples the PluginManager will use the first one it finds.                                                                                                                                                                                     |
 
-## Color reference
+## Functions
 
-Default Role Colors:
-
-![Discord role color reference](https://raw.githubusercontent.com/UdonVR/DisBridge/main/Images/DiscordColorPallet.png)
-
-|  `1abc9c`   |  `2fcc71`   |  `3498db`   |  `9b59b6`   |  `e91e63`   |  `f1c40f`   |  `e67e23`   |  `e74b3c`   |  `95a6a6`   |  `607d8b`   |
-|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|
-| <b>`0F806A` | <b>`208b4c` | <b>`206694` | <b>`71368a` | <b>`ad1357` | <b>`c27c0d` | <b>`a84301` | <b>`992d22` | <b>`979c9f` | <b>`546e7a` |
-
-Server Booster Color: `f47fff`
-
-# Legacy
-
-## Manually setting up your RoleContainers
-manual setup of your role containers is no longer needed in version 8.0+. The recommended way is to use the included editing tool.
-<br>This way is still needed for the Legacy version of DisBridge.
-
-Roles are stored in objects called RoleContainers. Your RoleContainers are stored under your DisBrige PluginManager under `-- Roles --`.
-<br>There are 3 ways to add a new RoleContainer.
-<br>You can duplicate the current RoleContainer which will make a new one next to the current one. Or you can right click `-- Roles --` and add a new RoleContainer found under `/UdonVR/DisBridge/Parts/RoleContainer`.
-<br>If you would like to add the prefab manually it's found in `_UdonVR/DisBridge/Prefabs/Parts`
-
-The RoleContainer holds all of your roles information. They MUST be under `-- Roles --` in the PluginManager and in the same order you have your roles setup as in Discord.
-*<br>You can find your role order by running `/Guild-status` and can be re-ordered using `/supporter-role reorder`*
+| Function       | Description                                                                                                                                                                                                                                                                                                                                                |
+|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Role ID        | This is what is used to match your roles in Discord to the roles used in Unity.                                                                                                                                                                                                                                                                            |
+| Role Name      | This is the name of the Role itself.                                                                                                                                                                                                                                                                                                                       |
+| Role Alt Name  | This is the Alt Name of the role, generally this is a Singular name. Example being:<br>If the role was called `Developers` i would make the Alt name `Developer`.                                                                                                                                                                                          |
+| Role Icon      | The Icon for plugins to use for the role.                                                                                                                                                                                                                                                                                                                  |
+| Role Color     | The color for plugins to use for the role.                                                                                                                                                                                                                                                                                                                 |
+| Manual Members | This manually adds people to the role, and will include them when creating the lists. These users will also be used if your key fails to load, or if no key is used.<br>Manual members will also be used to test permissions in Editor. Duplicate users found in Manual Members will not be added to the total user list when pulling users from your key. |
+| Is Staff       | This marks your role as a Staff role and will mark the role to be added to the generic Staff list.                                                                                                                                                                                                                                                         |
+| Is Supporter   | This marks your role as a Supporter role and will mark the role to be added to the generic Supporter list.                                                                                                                                                                                                                                                 |
+| Is Booster     | This marks your role as your Discord Booster role. You can only have one of these marked, and if you have multiples the PluginManager will use the first one it finds.                                                                                                                                                                                     |
