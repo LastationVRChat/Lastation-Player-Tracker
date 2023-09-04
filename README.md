@@ -1,5 +1,4 @@
 
-
 ![TrackDeezNuts](playertracker.png)
 A sonar-like tracking system for players within a VRChat World.
 This is much like a **Framework** in that more plug-ins and add-ons will be made and added over time.
