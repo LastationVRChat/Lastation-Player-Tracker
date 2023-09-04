@@ -5,6 +5,13 @@ This is much like a **Framework** in that more plug-ins and add-ons will be made
 
 - This script does most of its functions via the local user, meaning every time it "Pings" all player locations they are captured and stored by the local user. This keeps something like an array of player locations from being sent over the network.
 
+If you use our Prefab we do not ask you to credit us, simply add to our repo if you make any Plug-ins or have any code changes you would like to suggest our contact info is below or you may use the [discussions](https://github.com/LastationVRChat/Lastation-Player-Tracker/discussions)
+<br>
+**Contact**
+Our [Discord Server](https://discord.gg/lastation) (the best way to contact us)
+Email: Admin@Lastation.tech
+
+
 ### Why make a new tracker and not use an existing one?
 Originally, We used an existing `Collider` and `Event` based tracking solution. However, this was prone to failure in many regards primarily because it was unreliable and would make many tracking mistakes when it came to certain events or edge cases, using colliders was a bit of a pain for Raycast guns at times. So we decided it was better to design this system that uses `Transforms` as probes that check the closest probe to each player and assign them to the room of that probe.
 
