@@ -14,6 +14,10 @@ By default, you will have a Prefab folder with a prefab for one fully set-up roo
 - From here you can use the foldout called "Probes" from here you can add or delete probes in a room.
 - Next just simply adjust the positions of the probes throughout your room. (Keep them low to the floor for best results)
 - Once you have that configured you can add rooms and probes via the `Location Tracker [Core]` Script and use the Prefabs in the folder located at `PlayertrackerV2/Prefabs/Components` to supply them.
+- Set up any `Plugins` you want to use currently we only supply the two displays.
+- Lastly, set up how you want to make the tracker refresh built-in is "PingLoop" which you can set in `Seconds` of how often you want it to run.
+- Alternatively, you can set "PingLoop" to `0` which will disabled it and use a function call to script your own "Ping" scripts using the `Functions` below.
+
 
 
 # Parts of the Framework:
