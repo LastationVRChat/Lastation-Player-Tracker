@@ -38,7 +38,7 @@ By default, you will have a Prefab folder with a prefab for one fully set-up roo
 | `TrackerMain` public UdonBehaviour[] plugins; | Plugin Array for future Plugins currently only used for the displays. |
 | `TrackerMain` public TrackerRoom[] trackedRooms; | Stores the rooms to be tracked. |
 | `TrackerMain` public TrackerRoom[] playerRooms; | Stores the room the player is in by array index. (See Below) |
-| `TrackerMain` private VRCPlayerApi[] players; | Stores the players index for the playerRooms array. ("Element 0" on this array stores X player and comparing it to "Element 0" on the `playerRooms` array will be the room that the player of "Element 0" is in) |
+| `TrackerMain` private VRCPlayerApi[] players; | Stores the players index for the playerRooms array. ("Element 0" on this array stores X player and comparing it to "Element 0" on the `playerRooms` array will be the room that the player of "Element 0" is in.) |
 | `TrackerMain` private int playerCount; | Stores the current player count. Used for generating the `players[]` array. |
 | `TrackerMain` private TrackerRoom _nearestRoom; | Stores the nearest room during each forloop within the AssignRoom Function. (Do not touch, unless you know what you are doing.) |
 | `TrackerRoom` public string roomName; | The name of this room, Managed by the `TrackerMain(Script)` editor scripting. |
