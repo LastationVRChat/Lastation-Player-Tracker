@@ -41,7 +41,7 @@ By default, you will have a Prefab folder with a prefab for one fully set-up roo
 | `TrackerMain` private VRCPlayerApi[] players; | Stores the players index for the playerRooms array. ("Element 0" on this array stores X player and comparing it to "Element 0" on the `playerRooms` array will be the room that the player of "Element 0" is in)                                                                                                                                                                                                                                                                                                              |
 | `TrackerMain` private int playerCount; | Stores the current player count. Used for generating the `players[]` array.                                                                                                                                                                                                       
                                     
-| `TrackerMain` public UdonBehaviour[] plugins; | Plugin Array for future Plugins currently only used for the displays.   
+| `TrackerMain` public UdonBehaviour[] plugins; | Plugin Array for future Plugins currently only used for the displays.   |
 
 
 ## Functions
