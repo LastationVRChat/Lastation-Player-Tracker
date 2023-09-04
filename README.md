@@ -16,7 +16,7 @@ By default, you will have a Prefab folder with a prefab for one fully set-up roo
 - Once you have that configured you can add rooms and probes via the `Location Tracker [Core]` Script and use the Prefabs in the folder located at `PlayertrackerV2/Prefabs/Components` to supply them.
 - Set up any `Plugins` you want to use currently we only supply the two displays.
 - Lastly, set up how you want to make the tracker refresh built-in is "PingLoop" which you can set in `Seconds` of how often you want it to run.
-- Alternatively, you can set "PingLoop" to `0` which will disabled it and use a function call to script your own "Ping" scripts using the `Functions` below.
+- Alternatively, you can set "PingLoop" to `0` which will disable it, and use a function call to script your own "Ping" scripts using the `Functions` below.
 
 
 
@@ -26,9 +26,9 @@ By default, you will have a Prefab folder with a prefab for one fully set-up roo
 
 | Plugin       | Description                                                                                                                                                                                                                                                                                                                                                |
 |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Global Room Display | This is what is used to match your roles in Discord to the roles used in Unity.                                                                                                                                                                                                                                                                            |
-| Role Name      | This is the name of the Role itself.                                                                                                                                                                                                                                                                                                                       |
-| Role Alt Name  | This is the Alt Name of the role, generally this is a Singular name. Example being:<br>If the role was called `Developers` i would make the Alt name `Developer`.                                                                                                                                                                                          |
+| Global Room Display | This prefab is used to display all players and what room each one is in. (Great for testing the Probes)                                                                                                                                                                                                                                                                            |
+| Local Room Display | This prefab is used to display the players that are inside of the attached `TrackerRoom(Script)`                                                                                                                                                                                                                                                                                                                        |
+| More Plug-ins Soon!  | This is a project that will be added to as we at [Lastation](https://discord.gg/lastation) need them. However, we are going to provide documentation below so you can make your own, and should you want them added to `main` just contact us via Discord or create a [Issue](issues)                                                                                                                                                                                        |
 
 ## Variables
 
