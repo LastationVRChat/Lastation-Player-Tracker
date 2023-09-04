@@ -63,3 +63,6 @@ By default, you will have a Prefab folder with a prefab for one fully set-up roo
 |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `TrackerMain` SendNetworkPing() | Used to force all players to run the `Ping()` Function. |
 | `TrackerMain` Ping() | Used to update all player locations and check what rooms they are in. (This function is local, Use the Function above if you want to force all players to check player locations. |
+| `TrackerMain` string[] GetPlayerNames() | Returns a string array of player display names with the same index as the `VRCPlayerApi[] players` array for easy sorting. |
+| `TrackerMain` TrackerRoom GetRoom(VRCPlayerApi player) | Feed this function a player to get the room they are in. (Useful for Plugins) |
+| `TrackerRoom` int GetPlayerCount() | a Function within a `TrackerRoom` to get that rooms total players in the room. |
