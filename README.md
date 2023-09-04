@@ -6,23 +6,19 @@ This is much like a **Framework** in that more plug-ins and add-ons will be made
 Originally, We used an existing `Collider` and `Event` based tracking solution. However, this was prone to failure in many regards primarily because it was unreliable and would make many tracking mistakes when it came to certain events or edge cases, using colliders was a bit of a pain for Raycast guns at times. So we decided it was better to design this system that uses `Transforms` as probes that check the closest probe to each player and assign them to the room of that probe.
 
 # Setting up the Prefab
-If you are using the free version of DisBridge, you can skip to `Parts of a RoleContainer` below for setup, as you wont have a JSON to import and will need to do a manual setup.
+By default, you will have a Prefab folder with a prefab for one fully set-up room and two displays.
+- Drag the `Location Tracker [Core]` Prefab into the scene.
+- Within the GameObject called "Rooms" will be a GameObject Called "Room 1" Drag this to the location of your first room to set up.
+- Select the `Location Tracker [Core]` GameObject from here you can Manage, Add, or Delete rooms.
+- Give your first room a name in the "Room List" This will mirror the room name to the `TrackerRoom(Script)` and apply it to the "roomName" Variable as well as the GameObject of the room's script.
+- From here you can use the foldout called "Probes" from here you can add or delete probes in a room.
+- Next just simply adjust the positions of the probes throughout your room. (Keep them low to the floor for best results)
+- Once you have that configured you can add rooms and probes via the `Location Tracker [Core]` Script and use the Prefabs in the folder located at `PlayertrackerV2/Prefabs/Components` to supply them.
 
-To initially setup the prefab, it is recommended to import your roles from the DisBridge bot.
-<br>All you need to do is to click the `Parse from Json` button in the bottom right of the editing tool.
-<br><i>(If you dont have the Json file to import, you can get it by running `/guild-status` in your server.)</i>
-<br>All of your roles should now be in the editing tool.
-
-After importing your roles, you'll need to do some minor edits.
-<br>To edit a role, all you need to do is click on the role, and it should expand to show all the options.
-<br>You'll need to go though each of your now imported roles and check mark what roles are and aren't support and staff roles.
-<br>The `Is Supporter` and `Is Staff` check marks are for generic checks. This is so if a plugin doesn't need to know what specific role you're in, and just needs to know if you're a staff member or a supporter.
-<br>A role can be both a supporter and a staff member. If you're just using DisBridge to edit a list of names, you dont need to mark any roles as supporters or staff. But it's still recommended to do so.
-
-Other notable options would be `Alternative Role Name`, `Role Icon` and `Manual Usernames`.
-<br>You can read about what everything does in `Parts of a RoleContainer` below.
 
 # Parts of the Framework:
+
+## Plugins
 
 ## Variables
 
