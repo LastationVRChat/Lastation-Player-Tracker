@@ -1,4 +1,4 @@
-# Lastation-Player-Tracker
+# Lastation Player Tracker
 
 ![TrackDeezNuts](playertracker.png)
 A sonar-like tracking system for players within a VRChat World.
