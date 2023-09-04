@@ -2,6 +2,7 @@
 ![TrackDeezNuts](playertracker.png)
 A sonar-like tracking system for players within a VRChat World.
 This is much like a **Framework** in that more plug-ins and add-ons will be made and added over time.
+
 <br>This doc will be going over how to set our prefabs up. If you'd like to make your own plugins for the prefab,
 please refer to "Making a Plugin".
 
