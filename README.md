@@ -7,6 +7,7 @@ This is much like a **Framework** in that more plug-ins and add-ons will be made
 
 If you use our Prefab we do not ask you to credit us, simply add to our repo if you make any Plug-ins or have any code changes you would like to suggest our contact info is below or you may use the [discussions](https://github.com/LastationVRChat/Lastation-Player-Tracker/discussions)
 <br>
+<br>
 **Contact**
 <br> Our [Discord Server](https://discord.gg/lastation) (the best way to contact us)
 <br> Email: Admin@Lastation.tech
