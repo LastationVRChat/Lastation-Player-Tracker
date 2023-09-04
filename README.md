@@ -40,8 +40,11 @@ By default, you will have a Prefab folder with a prefab for one fully set-up roo
 | `TrackerMain` public TrackerRoom[] playerRooms; | Stores the room the player is in by array index. (See Below) |
 | `TrackerMain` private VRCPlayerApi[] players; | Stores the players index for the playerRooms array. ("Element 0" on this array stores X player and comparing it to "Element 0" on the `playerRooms` array will be the room that the player of "Element 0" is in) |
 | `TrackerMain` private int playerCount; | Stores the current player count. Used for generating the `players[]` array. |
-| `TrackerMain` private TrackerRoom _nearestRoom; | Stores the nearest room during each forloop within the AssignRoom Function. (Do not touch, unless you know what you are doing) |
-| `TrackerRoom` public string roomName; | The name of this room, Managed by the `TrackerMain(Script)` editor scripting |
+| `TrackerMain` private TrackerRoom _nearestRoom; | Stores the nearest room during each forloop within the AssignRoom Function. (Do not touch, unless you know what you are doing.) |
+| `TrackerRoom` public string roomName; | The name of this room, Managed by the `TrackerMain(Script)` editor scripting. |
+| `TrackerRoom` public float distance; | Used to Store the player's distance to each room during each loop resets each time a new player is checked. Useful for local debugging, Hidden in inspector by default. |
+| `TrackerRoom` public Transform[] probes; | Stores this rooms Probes, Managed by the `TrackerMain(Script)` editor scripting. |
+| `TrackerRoom` public int playersInRoom; | Stores the current total of players within the room for use with Plugins. |
 
 ## Functions
 
