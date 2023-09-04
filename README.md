@@ -24,6 +24,12 @@ By default, you will have a Prefab folder with a prefab for one fully set-up roo
 
 ## Plugins
 
+| Plugin       | Description                                                                                                                                                                                                                                                                                                                                                |
+|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Global Room Display | This is what is used to match your roles in Discord to the roles used in Unity.                                                                                                                                                                                                                                                                            |
+| Role Name      | This is the name of the Role itself.                                                                                                                                                                                                                                                                                                                       |
+| Role Alt Name  | This is the Alt Name of the role, generally this is a Singular name. Example being:<br>If the role was called `Developers` i would make the Alt name `Developer`.                                                                                                                                                                                          |
+
 ## Variables
 
 | Variable       | Description                                                                                                                                                                                                                                                                                                                                                |
