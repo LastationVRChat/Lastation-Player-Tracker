@@ -3,7 +3,7 @@
 A sonar-like tracking system for players within a VRChat World.
 This is much like a **Framework** in that more plug-ins and add-ons will be made and added over time.
 
-- This script does most of its functions via the local user, meaning every time it "Pings" all player locations they are captured and stored by the local user. This keeps something like an array of player locations from being sent over the network.
+- This script does most of its functions via the local user, meaning every time it "Pings" all player locations are captured and stored by the local user. This keeps something like an array of player locations from being sent over the network.
 
 If you use our Prefab we do not ask you to credit us, simply add to our repo if you make any Plug-ins or have any code changes you would like to suggest our contact info is below or you may use the [discussions](https://github.com/LastationVRChat/Lastation-Player-Tracker/discussions)
 <br>
