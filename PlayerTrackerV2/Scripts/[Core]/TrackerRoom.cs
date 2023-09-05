@@ -5,41 +5,45 @@ using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
-[UdonBehaviourSyncMode(BehaviourSyncMode.None)]
-public class TrackerRoom : UdonSharpBehaviour
+namespace Lastation.PlayerTrackerV2
 {
-   public string roomName;
-   [HideInInspector] public float distance;
-   public Transform[] probes;
-   public int playersInRoom;
-
-
-    private float tmpDistance;
-    public void RoomProbeCheck(VRCPlayerApi _player)
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    public class TrackerRoom : UdonSharpBehaviour
     {
-        distance = float.PositiveInfinity;
-        for (int i = 0; i < probes.Length; i++)
+        public string roomName;
+        [HideInInspector] public float distance;
+        public Transform[] probes;
+        public int playersInRoom;
+
+
+        private float tmpDistance;
+        public void RoomProbeCheck(VRCPlayerApi _player)
         {
-            if (probes[i] == null) continue;
-            tmpDistance = Vector3.Distance(_player.GetPosition(), probes[i].position);
-            distance = (tmpDistance < distance) ? tmpDistance : distance;
+            distance = float.PositiveInfinity;
+            for (int i = 0; i < probes.Length; i++)
+            {
+                if (probes[i] == null) continue;
+                tmpDistance = Vector3.Distance(_player.GetPosition(), probes[i].position);
+                distance = (tmpDistance < distance) ? tmpDistance : distance;
 
-            /*
-            same as above but as a if statement
-            if (tmpDistance < distance)
-            {
-            distance = tmpDistance;
+                /*
+                same as above but as a if statement
+                if (tmpDistance < distance)
+                {
+                distance = tmpDistance;
+                }
+                else
+                {
+                distance = distance;
+                }
+                */
             }
-            else
-            {
-            distance = distance;
-            }
-            */
+            return;
         }
-        return;
+        public int GetPlayerCount()
+        {
+            return playersInRoom;
+        }
     }
-    public int GetPlayerCount()
-    {
-        return playersInRoom;
-    }
+
 }

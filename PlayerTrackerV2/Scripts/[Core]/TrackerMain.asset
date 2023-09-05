@@ -21,7 +21,7 @@ MonoBehaviour:
   compiledVersion: 2
   behaviourSyncMode: 1
   hasInteractEvent: 0
-  scriptID: -961790411369780441
+  scriptID: 611081453576244050
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
@@ -194,7 +194,7 @@ MonoBehaviour:
       Data: 12|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TrackerRoom[], Assembly-CSharp
+      Data: Lastation.PlayerTrackerV2.TrackerRoom[], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -308,7 +308,7 @@ MonoBehaviour:
       Data: 19|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: TrackerRoom, Assembly-CSharp
+      Data: Lastation.PlayerTrackerV2.TrackerRoom, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 

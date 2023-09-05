@@ -4,26 +4,28 @@ using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
-[UdonBehaviourSyncMode(BehaviourSyncMode.None)]
-public class DisplayGlobalTrackingData : UdonSharpBehaviour
+namespace Lastation.PlayerTrackerV2
 {
-    public GameObject Template;
-    public Transform contentParent;
-    public TrackerMain tracker;
-
-    public void GeneratePlayerList()
+    [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
+    public class DisplayGlobalTrackingData : UdonSharpBehaviour
     {
-        string[] playernames = tracker.GetPlayerNames();
+        public GameObject Template;
+        public Transform contentParent;
+        public TrackerMain tracker;
 
-        //kill all children
-        for (int i = 0; i < contentParent.childCount; i++)
+        public void GeneratePlayerList()
         {
-            Destroy(contentParent.GetChild(i).gameObject);
-        }
+            string[] playernames = tracker.GetPlayerNames();
 
-        for (int i = 0; i < playernames.Length; i++)
-        {
-            
+            //kill all children
+            for (int i = 0; i < contentParent.childCount; i++)
+            {
+                Destroy(contentParent.GetChild(i).gameObject);
+            }
+
+            for (int i = 0; i < playernames.Length; i++)
+            {
+
                 GameObject newThing = Instantiate(Template);
 
                 TrackerGlobalDisplayUnit displayUnit = newThing.GetComponent<TrackerGlobalDisplayUnit>();
@@ -38,7 +40,10 @@ public class DisplayGlobalTrackingData : UdonSharpBehaviour
                 newThing.transform.SetParent(contentParent);
                 newThing.transform.localScale = Template.transform.localScale;
                 newThing.SetActive(true);
-            
+
+            }
         }
     }
+
 }
+
