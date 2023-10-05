@@ -10,41 +10,43 @@ namespace Lastation.PlayerTrackerV2
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class DisplayLocalTrackingData : UdonSharpBehaviour
     {
-        public TrackerRoom localRoomScript;
-        public GameObject Template;
-        public Transform contentParent;
         public TrackerMain tracker;
+        public TrackerRoom localRoomScript;
+        public GameObject[] templates;
 
+        private Text[] _templateNames;
+        private void Start()
+        {
+            _templateNames = new Text[templates.Length];
+
+            for (int i = 0; i < templates.Length; i++)
+            {
+                _templateNames[i] = templates[i].GetComponentInChildren<Text>();
+            }
+        }
 
         public void GeneratePlayerList()
         {
             string[] playernames = tracker.GetPlayerNames();
 
-            //kill all children
-            for (int i = 0; i < contentParent.childCount; i++)
+            //disable all the templates
+            foreach (GameObject Template in templates)
             {
-                Destroy(contentParent.GetChild(i).gameObject);
+                Template.SetActive(false);
             }
 
-            //create new children
+
+            TrackerRoom[] playerRooms = tracker.playerRooms;
+
+            //configure and enable the templates
             for (int i = 0; i < playernames.Length; i++)
             {
-                if (tracker.playerRooms[i] == localRoomScript && playernames[i] != "" && playernames[i] != null) //if the player is in the same room as the current TrackerRoom
-                {
-                    GameObject newThing = Instantiate(Template);
-
-                    Text name = newThing.transform.GetChild(0).GetComponent<Text>();
-                    if (name)
-                    {
-                        name.text = playernames[i];
-                    }
-
-                    newThing.transform.position = Template.transform.position;
-                    newThing.transform.rotation = Template.transform.rotation;
-                    newThing.transform.SetParent(contentParent);
-                    newThing.transform.localScale = Template.transform.localScale;
-                    newThing.SetActive(true);
-                }
+                if (playerRooms[i] != localRoomScript) continue; // The player is not in the same room as the current TrackerRoom.
+                string playerName = playernames[i];
+                if (string.IsNullOrEmpty(playerName)) continue;
+                
+                _templateNames[i].text = playerName;
+                templates[i].SetActive(true);
             }
         }
     }
