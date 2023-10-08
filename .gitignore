@@ -1,6 +1,7 @@
 # This .gitignore file should be placed at the root of your Unity project directory
 #
-# Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
+# Get latest from: https://github.com/UdonVR/VRchat-gitignore/blob/main/.gitignore
+# Modification of: https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 /[Ll]ibrary/
 /[Tt]emp/
@@ -14,8 +15,8 @@
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
 
-# Recordings can get excessive in size
-/[Rr]ecordings/
+# Asset meta data should only be ignored when the corresponding asset is also ignored
+!/[Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
@@ -59,7 +60,6 @@ sysinfo.txt
 *.apk
 *.aab
 *.unitypackage
-*.app
 
 # Crashlytics generated file
 crashlytics-build.properties
@@ -68,5 +68,16 @@ crashlytics-build.properties
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
 # Temporary auto-generated Android Assets
-/[Aa]ssets/[Ss]treamingAssets/aa.meta
-/[Aa]ssets/[Ss]treamingAssets/aa/*
+/[Aa]ssets/[Ss]treaming[Aa]ssets/aa.meta
+/[Aa]ssets/[Ss]treaming[Aa]ssets/aa/*
+
+
+# Added for VRChat and Bakery
+/[Aa]ssets/**/[Ii]gnore
+/[Aa]ssets/**/[Ii]gnore.meta
+/[Aa]ssets/[Uu]donSharp/[Uu]donSharp[Ss]ettings.asset
+/[Aa]ssets/[Uu]donSharp/[Uu]donSharp[Ss]ettings.asset.meta
+/[Aa]ssets/[Bb]akery/*
+/[Aa]ssets/[Ee]ditor/x64/[Bb]akery/*
+/[Aa]ssets/[Bb]akery.meta
+/[Aa]ssets/[Ee]ditor/x64/[Bb]akery.meta
