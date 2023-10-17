@@ -1,0 +1,17 @@
+{
+  "name": "com.lastation.playertracker",
+  "displayName": "Playertracker V2",
+  "version": "1.16.0",
+  "unity": "2019.4",
+  "description": "A sonar-like tracking system for players within a VRChat World. This is much like a Framework in that more plug-ins and add-ons will be made and added over time.",
+  "author": {
+    "name": "Lastation",
+    "email": "admin@lastation.tech",
+    "url": "https://lastation.tech"
+  },
+  "vpmDependencies": {
+    "com.vrchat.base": ">=3.1.x",
+    "com.vrchat.worlds": ">=3.1.x",
+    "com.vrchat.udonsharp": ">=1.1.x"
+  }
+}
