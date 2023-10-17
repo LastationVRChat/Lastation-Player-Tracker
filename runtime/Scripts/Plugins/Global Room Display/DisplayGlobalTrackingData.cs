@@ -13,7 +13,6 @@ namespace Lastation.PlayerTrackerV2
 
         private Text[] nameTexts;
         private Text[] locationTexts;
-
         private void Start()
         {
             nameTexts = new Text[templates.Length];
@@ -29,20 +28,14 @@ namespace Lastation.PlayerTrackerV2
 
         public void GeneratePlayerList()
         {
-            string[] playernames = tracker.GetPlayerNames();
-
-            //disable all templates
-            foreach (GameObject Template in templates)
+            for (int i = 0; i < templates.Length; i++)
             {
-                Template.SetActive(false);
-            }
-
-            for (int i = 0; i < playernames.Length; i++)
-            {
-                nameTexts[i].text = playernames[i];
-                locationTexts[i].text = tracker.playerRooms[i].roomName;
-
-                templates[i].SetActive(true);
+                if (tracker.trackers[i].isUsed)
+                {
+                    nameTexts[i].text = tracker.trackers[i].playerName;
+                    locationTexts[i].text = tracker.trackers[i].currentRoom.roomName;
+                    templates[i].SetActive(true);
+                }
             }
         }
     }

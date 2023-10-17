@@ -198,33 +198,39 @@ namespace Lastation.PlayerTrackerV2
         #endregion Serialized Fields
 
         [HideInInspector] public TrackerRoom[] trackedRooms; //stores the rooms to be tracked
-        [HideInInspector] public TrackerRoom[] playerRooms; //stores the room the player is in by array index
-        [HideInInspector] public string[] playerNames; //stores the player names by array index
+        //[HideInInspector] public string[] playerNames; //stores the player names by array index
+
+        public TrackerPlayer localTracker;
+        public TrackerPlayer[] trackers;
 
         #region Private Fields
 
         private VRCPlayerApi[] players; //stores the players for the playerRooms array
         private int playerCount; //stores the current player count
-        private int _currentPlayerToPing;
-        private bool _pinging = false;
+        //private int _currentPlayerToPing;
 
         #endregion Private Fields
 
 
         private void Start()
         {
-            SendCustomEventDelayedFrames(nameof(PingLoop), 10);
+            for (int i = 0; i < trackers.Length; i++)
+            {
+                if (trackers[i]._TryGetTracker())
+                {
+                    break;
+                }
+            }
         }
 
         #region VRC Overrides
 
-        public override void OnPlayerLeft(VRCPlayerApi player)
+        public override void OnPlayerLeft(VRCPlayerApi _player)
         {
-            _PlayerPingLoop();
-        }
-        public override void OnPlayerJoined(VRCPlayerApi player)
-        {
-            _PlayerPingLoop();
+            for (int i = 0; i < trackers.Length; i++)
+            {
+                if (trackers[i].thisOwner == _player) trackers[i]._ResetTracker();
+            }
         }
 
         #endregion VRC Overrides
@@ -233,72 +239,40 @@ namespace Lastation.PlayerTrackerV2
 
         #region API
 
-        public void SendNetworkPing()
-        {
-            SendCustomNetworkEvent(NetworkEventTarget.All, nameof(Ping));
-        }
-
         /// <summary>
         /// Call this to start the process that finds what room everyone is in.
         /// </summary>
         public void Ping()
         {
-            if (_pinging) return;
-
-            // Ask the VRCPlayerAPI for the number of players
-            playerCount = VRCPlayerApi.GetPlayerCount();
-
-            // Create an array of VRCPlayerApi objects of the required size
-            players = new VRCPlayerApi[playerCount];
-            playerRooms = new TrackerRoom[playerCount];
-            playerNames = new string[playerCount];
-
-            // Get the players and assign them to the array
-            VRCPlayerApi.GetPlayers(players);
-
-            for (int i = 0; i < playerCount; i++)
-            {
-                playerNames[i] = players[i].displayName;
-            }
-
             // TODO: CHECK THIS IN EDITOR
             // Sanity check that there are rooms
             if (trackedRooms == null) { Debug.LogError("No rooms found, please add rooms to the tracker"); return; }
-
-            // Reset all the counters
-            for (int i = 0; i < trackedRooms.Length; i++)
-            {
-                trackedRooms[i].playersInRoom = 0;
-            }
-
-            _currentPlayerToPing = 0;
-            _pinging = true;
-            _PlayerPingLoop();
-        }
-
-        public void _PlayerPingLoop()
-        {
-            if (_currentPlayerToPing == playerCount) { PingCompleted(); return; }
-
-            AssignRoom(players[_currentPlayerToPing]);
-            _currentPlayerToPing++;
-            SendCustomEventDelayedFrames(nameof(_PlayerPingLoop), 1);
+            
+            AssignRoom(Networking.LocalPlayer);
         }
 
         public TrackerRoom GetRoom(VRCPlayerApi player)
         {
-            int playerRoomsIndex = Array.IndexOf(players, player); //get the 'INT' index of the player in the players array.
+            for (int i = 0; i < trackers.Length; i++)
+            {
+                if (trackers[i].thisOwner == player) return trackers[i].currentRoom;
+            }
 
-            if (playerRoomsIndex == -1) { Debug.LogError("[GetRoom] - Player Not Found"); return null; }
-
-            return playerRooms[playerRoomsIndex];
+            return null;
         }
-
-        /// <summary>
-        /// Used by the room displays to get the player names.
-        /// </summary>
-        /// <returns>PlayerNames</returns>
-        public string[] GetPlayerNames() => playerNames;
+        public bool TryGetRoom(VRCPlayerApi player, out TrackerRoom _trackerRoom)
+        {
+            for (int i = 0; i < trackers.Length; i++)
+            {
+                if (trackers[i].thisOwner == player)
+                {
+                    _trackerRoom = trackers[i].currentRoom;
+                    return true;
+                }  
+            }
+            _trackerRoom = null;
+            return false;
+        }
 
         // get room names from the 
 
@@ -306,9 +280,9 @@ namespace Lastation.PlayerTrackerV2
 
         #region Internal
 
-        private void PingCompleted()
+        public void UpdatePlugins()
         {
-            _pinging = false;
+            Debug.Log("Updating Plugins");
             for (int i = 0; i < plugins.Length; i++)
             {
                 plugins[i].SendCustomEvent("GeneratePlayerList");
@@ -317,9 +291,6 @@ namespace Lastation.PlayerTrackerV2
 
         private void AssignRoom(VRCPlayerApi _player)
         {
-            int playerIndex = Array.IndexOf(players, _player); // Get the index of the player in the players array.
-            if (playerIndex == -1) { Debug.LogError("[AssignRoom] - Player Is Not In Players Array"); return; }
-
             float smallestDistanceFound = float.PositiveInfinity;
             int closestRoomIndex = -1;
 
@@ -333,10 +304,7 @@ namespace Lastation.PlayerTrackerV2
                 smallestDistanceFound = distanceToRoom;
                 closestRoomIndex = i;
             }
-
-            TrackerRoom closestRoom = trackedRooms[closestRoomIndex];
-            closestRoom.playersInRoom++;
-            playerRooms[playerIndex] = closestRoom; // Update the room the player is in.
+            localTracker.UpdateRoom(trackedRooms[closestRoomIndex]);
         }
 
         #endregion Internal
@@ -349,6 +317,11 @@ namespace Lastation.PlayerTrackerV2
             Ping();
             if (pingLoop <= 0) return;
             SendCustomEventDelayedSeconds(nameof(PingLoop), pingLoop);
+        }
+
+        public int GetRoomIndex(TrackerRoom _room)
+        {
+            return Array.IndexOf(trackedRooms, _room);
         }
     }
 }

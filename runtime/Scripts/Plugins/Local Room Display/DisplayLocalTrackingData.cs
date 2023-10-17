@@ -27,8 +27,6 @@ namespace Lastation.PlayerTrackerV2
 
         public void GeneratePlayerList()
         {
-            string[] playernames = tracker.GetPlayerNames();
-
             //disable all the templates
             foreach (GameObject Template in templates)
             {
@@ -36,13 +34,13 @@ namespace Lastation.PlayerTrackerV2
             }
 
 
-            TrackerRoom[] playerRooms = tracker.playerRooms;
+            TrackerPlayer[] playerTrackers = tracker.trackers;
 
             //configure and enable the templates
-            for (int i = 0; i < playernames.Length; i++)
+            for (int i = 0; i < playerTrackers.Length; i++)
             {
-                if (playerRooms[i] != localRoomScript) continue; // The player is not in the same room as the current TrackerRoom.
-                string playerName = playernames[i];
+                if (playerTrackers[i].currentRoom != localRoomScript) continue; // The player is not in the same room as the current TrackerRoom.
+                string playerName = playerTrackers[i].playerName;
                 if (string.IsNullOrEmpty(playerName)) continue;
                 
                 _templateNames[i].text = playerName;
