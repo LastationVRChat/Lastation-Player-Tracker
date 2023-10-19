@@ -214,9 +214,23 @@ namespace Lastation.PlayerTrackerV2
 
         private void Start()
         {
+            if (Networking.LocalPlayer.isMaster)
+            {
+                Debug.LogError($"isMaster, run StartDelay");
+                _StartDelay();
+            }
+            else
+            {
+                //SendCustomEventDelayedSeconds(nameof(_StartDelay),5f);
+            }
+        }
+
+        public void _StartDelay()
+        {
+            Debug.LogError($"run StartDelay");
             for (int i = 0; i < trackers.Length; i++)
             {
-                if (trackers[i]._TryGetTracker())
+                if (trackers[i]._TryGetTracker(Networking.LocalPlayer))
                 {
                     break;
                 }
@@ -224,6 +238,19 @@ namespace Lastation.PlayerTrackerV2
         }
 
         #region VRC Overrides
+
+        public override void OnPlayerJoined(VRCPlayerApi player)
+        {
+            if (player.isLocal) return;
+            if (!Networking.LocalPlayer.isMaster) return;
+            for (int i = 0; i < trackers.Length; i++)
+            {
+                if (trackers[i]._TryGetTracker(player))
+                {
+                    break;
+                }
+            }
+        }
 
         public override void OnPlayerLeft(VRCPlayerApi _player)
         {
@@ -268,7 +295,7 @@ namespace Lastation.PlayerTrackerV2
                 {
                     _trackerRoom = trackers[i].currentRoom;
                     return true;
-                }  
+                }
             }
             _trackerRoom = null;
             return false;

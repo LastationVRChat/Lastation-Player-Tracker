@@ -33,8 +33,19 @@ namespace Lastation.PlayerTrackerV2
                 if (tracker.trackers[i].isUsed)
                 {
                     nameTexts[i].text = tracker.trackers[i].playerName;
-                    locationTexts[i].text = tracker.trackers[i].currentRoom.roomName;
+                    if (tracker.trackers[i].currentRoom != null)
+                    {
+                        locationTexts[i].text = tracker.trackers[i].currentRoom.roomName;
+                    }
+                    else
+                    {
+                        locationTexts[i].text = "null";
+                    }
                     templates[i].SetActive(true);
+                }
+                else
+                {
+                    templates[i].SetActive(false);
                 }
             }
         }
