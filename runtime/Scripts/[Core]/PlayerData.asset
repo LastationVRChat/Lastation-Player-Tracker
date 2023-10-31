@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
-  m_Name: TrackerPlayer
+  m_Name: PlayerData
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 8378ce2e4161cac4cacb173c6b8dee13,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 2d33d378135ea684fad5c1d086a9374e,
     type: 2}
   udonAssembly: 
   assemblyError: 
-  sourceCsScript: {fileID: 11500000, guid: 084edecf8d049a9498e76ee34f8e3efe, type: 3}
+  sourceCsScript: {fileID: 11500000, guid: a2143eeed74b8ba4ba9f752136ac288d, type: 3}
   scriptVersion: 2
   compiledVersion: 2
-  behaviourSyncMode: 0
+  behaviourSyncMode: 4
   hasInteractEvent: 0
-  scriptID: 1515380630030288732
+  scriptID: -1445107552039046815
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 

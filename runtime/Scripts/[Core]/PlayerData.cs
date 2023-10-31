@@ -9,7 +9,8 @@ using VRC.Udon.Common.Interfaces;
 
 namespace Lastation.PlayerTrackerV2
 {
-    public class TrackerPlayer : UdonSharpBehaviour
+    [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
+    public class PlayerData : UdonSharpBehaviour
     {
         public bool isUsed;
         [UdonSynced] public int playerId = -1;
@@ -28,20 +29,16 @@ namespace Lastation.PlayerTrackerV2
         
         public bool _TryGetTracker(VRCPlayerApi _player)
         {
-            Debug.LogError($"_TryGetTracker: {gameObject.name}");
             if (isUsed)
             {
-                Debug.LogError($"isUsed = true, returning");
                 return false;
             }
             if (VRC.SDKBase.Utilities.IsValid(VRCPlayerApi.GetPlayerById(playerId)))
             {
-                Debug.LogError($"playerId {playerId} is valid");
                 return false;
             }
             else
             {
-                Debug.LogError($"Assigning tracker to {_player.displayName}");
                 Networking.SetOwner(_player,gameObject);
                 if (Networking.GetOwner(gameObject).isLocal)
                 {
@@ -57,7 +54,6 @@ namespace Lastation.PlayerTrackerV2
 
         public void N_Setup()
         {
-            Debug.LogError($"run N_Setup on {gameObject.name}");
             thisOwner = Networking.LocalPlayer;
             playerId = thisOwner.playerId;
             currentRoomIndex = controller.GetRoomIndex(currentRoom);
@@ -70,8 +66,6 @@ namespace Lastation.PlayerTrackerV2
 
         public void UpdateRoom(TrackerRoom _room)
         {
-            Debug.LogError($"UpdateRoom {gameObject.name}");
-            Debug.LogError($"Player ID is {playerId}");
             if (_room == null)
             {
                 Debug.LogError($"Room is Null");
@@ -80,7 +74,6 @@ namespace Lastation.PlayerTrackerV2
 
             if (oldRoom == _room)
             {
-                Debug.LogError($"No Room Change");
                 return;
             }
             if (oldRoom != null){ oldRoom.playersInRoom--;}
@@ -98,7 +91,6 @@ namespace Lastation.PlayerTrackerV2
 
         public void _ResetTracker()
         {
-            Debug.LogError($"_ResetTracker {gameObject.name}");
             if (!isUsed) return;
             isUsed = false;
             currentRoom = null;
@@ -122,25 +114,19 @@ namespace Lastation.PlayerTrackerV2
         
         public override void OnDeserialization()
         {
-            Debug.LogError($"OnDeserialization {gameObject.name}");
             if (Networking.GetOwner(gameObject).isLocal)
             {
-                Debug.LogError($"Local player is owner, returning");
                 playerId = Networking.LocalPlayer.playerId;
                 RequestSerialization();
                 return;
             }
             thisOwner = VRCPlayerApi.GetPlayerById(playerId);
-            Debug.LogError($"playerId: {playerId}");
             if (!VRC.SDKBase.Utilities.IsValid(thisOwner))
             {
-                Debug.LogError($"thisOwner is not valid");
                 _ResetTracker();
                 return;
             }
             Setup();
-            Debug.LogError($"thisOwner: {thisOwner.displayName} | Owner: {Networking.GetOwner(gameObject).displayName}");
-            Debug.LogError($"currentRoomIndex: {currentRoomIndex}");
             if (currentRoomIndex != -1)
             {
                 UpdateRoom(controller.trackedRooms[currentRoomIndex]);

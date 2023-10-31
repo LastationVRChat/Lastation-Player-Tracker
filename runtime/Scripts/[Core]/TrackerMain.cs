@@ -198,10 +198,9 @@ namespace Lastation.PlayerTrackerV2
         #endregion Serialized Fields
 
         [HideInInspector] public TrackerRoom[] trackedRooms; //stores the rooms to be tracked
-        //[HideInInspector] public string[] playerNames; //stores the player names by array index
 
-        public TrackerPlayer localTracker;
-        public TrackerPlayer[] trackers;
+        [HideInInspector] public PlayerData localTracker;
+        public PlayerData[] trackers;
 
         #region Private Fields
 
@@ -216,26 +215,17 @@ namespace Lastation.PlayerTrackerV2
         {
             if (Networking.LocalPlayer.isMaster)
             {
-                Debug.LogError($"isMaster, run StartDelay");
-                _StartDelay();
-            }
-            else
-            {
-                //SendCustomEventDelayedSeconds(nameof(_StartDelay),5f);
+                for (int i = 0; i < trackers.Length; i++)
+                {
+                    if (trackers[i]._TryGetTracker(Networking.LocalPlayer))
+                    {
+                        break;
+                    }
+                }
+
             }
         }
 
-        public void _StartDelay()
-        {
-            Debug.LogError($"run StartDelay");
-            for (int i = 0; i < trackers.Length; i++)
-            {
-                if (trackers[i]._TryGetTracker(Networking.LocalPlayer))
-                {
-                    break;
-                }
-            }
-        }
 
         #region VRC Overrides
 

@@ -34,7 +34,7 @@ namespace Lastation.PlayerTrackerV2
             }
 
 
-            TrackerPlayer[] playerTrackers = tracker.trackers;
+            PlayerData[] playerTrackers = tracker.trackers;
 
             //configure and enable the templates
             for (int i = 0; i < playerTrackers.Length; i++)
