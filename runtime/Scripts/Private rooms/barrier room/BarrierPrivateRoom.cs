@@ -54,8 +54,10 @@ namespace Lastation.PlayerTrackerV2
         {
             if (trackerRoom.playersInRoom == 0 && Networking.IsOwner(gameObject))
             {
-                ToggleLock();
-                doorLock.SetLockState(false);
+                if(locked)
+                {
+                    ToggleLock();
+                }
             }
         }
         public void ToggleLock()
@@ -95,23 +97,15 @@ namespace Lastation.PlayerTrackerV2
             {
                 lockDisplay.SetActive(true);
                 unlockDisplay.SetActive(false);
-
-                //check if the localplayer is inside this room using the ID given by the location tracker
-                if (locationTracker.GetRoom(Networking.LocalPlayer) == trackerRoom)
-                {
-                    doorLock.SetLockState(locked);
-                }
-
+                doorObject.SetActive(true);
+                doorLock.SetLockState(true);
             }
             else
             {
                 lockDisplay.SetActive(false);
                 unlockDisplay.SetActive(true);
-
-                if (locationTracker.GetRoom(Networking.LocalPlayer) == trackerRoom)
-                {
-                    doorLock.SetLockState(locked);
-                }
+                doorObject.SetActive(false);
+                doorLock.SetLockState(false);
             }
         }
     }

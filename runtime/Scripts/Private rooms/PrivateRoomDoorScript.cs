@@ -58,8 +58,10 @@ namespace Lastation.PlayerTrackerV2
         {
             if (trackerRoom.playersInRoom == 0 && Networking.IsOwner(gameObject))
             {
-                ToggleLock();
-                doorLock.SetLockState(false);
+                if (locked)
+                {
+                    ToggleLock();
+                }
             }
         }
         public void ToggleLock()
