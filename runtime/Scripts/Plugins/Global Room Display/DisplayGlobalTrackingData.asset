@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Lastation.PlayerTrackerV2.TrackerMain, com.lastation.playertracker
+      Data: Lastation.PlayerTrackerV2.TrackerMain, tech.lastation.playertracker
     - Name: 
       Entry: 8
       Data: 

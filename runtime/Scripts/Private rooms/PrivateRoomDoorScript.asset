@@ -245,7 +245,7 @@ MonoBehaviour:
       Data: 15|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Lastation.PlayerTrackerV2.TrackerMain, com.lastation.playertracker
+      Data: Lastation.PlayerTrackerV2.TrackerMain, tech.lastation.playertracker
     - Name: 
       Entry: 8
       Data: 
@@ -320,7 +320,7 @@ MonoBehaviour:
       Data: 21|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Lastation.PlayerTrackerV2.TrackerRoom, com.lastation.playertracker
+      Data: Lastation.PlayerTrackerV2.TrackerRoom, tech.lastation.playertracker
     - Name: 
       Entry: 8
       Data: 
@@ -611,7 +611,7 @@ MonoBehaviour:
       Data: 39|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: DoorLock, com.lastation.playertracker
+      Data: DoorLock, tech.lastation.playertracker
     - Name: 
       Entry: 8
       Data: 
